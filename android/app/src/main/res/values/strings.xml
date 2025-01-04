@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id">1251057416185668</string>
+    <string name="fb_login_protocol_scheme">fb1251057416185668</string>
+    <string name="facebook_client_token">cd98eb2cb3f9ae27465069a9bf53ed2e</string>
+    <string name="app_name">travelhive_auth</string>
+</resources>

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "406780517648",
+    "project_id": "travelhive-df14a",
+    "storage_bucket": "travelhive-df14a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406780517648:android:3fd1db84fc7665aa91d995",
+        "android_client_info": {
+          "package_name": "com.example.travelhive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406780517648-jlg3crs7q48ul479966lbie92qa31sle.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.travelhive",
+            "certificate_hash": "03c30d6a0ae8c15554bbe6ad1eeb0af05078b76a"
+          }
+        },
+        {
+          "client_id": "406780517648-cfjf225fd3fa41965s02c2lha4i3ggpn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnmOdDq1phQ3QdzNvJW1U3EepuE8JdeAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406780517648-cfjf225fd3fa41965s02c2lha4i3ggpn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "406780517648-0800ali5fs67lk58e744epveg65bf19k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.travelhive"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
