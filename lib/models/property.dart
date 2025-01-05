@@ -37,21 +37,32 @@ class Property {
 
   factory Property.fromMap(Map<String, dynamic> data) {
 
+    List<dynamic> imageUrls = data['imageUrls'] as List<dynamic>;
+    List<dynamic> amenities = data['amenities'] as List<dynamic>;
+    List<dynamic> availabilityDates = data['availabilityDates'] as List<dynamic>;
+    List<dynamic> reviews = data['reviews'] as List<dynamic>;
+    String hostId = data['hostId'].id;
+
+    List<String> imageUrlsList = imageUrls.map((url) => url as String).toList();
+    List<String> amenitiesList = amenities.map((amenity) => amenity as String).toList();
+    List<String> reviewsList = reviews.map((review) => review as String).toList();
+    List<DateTime> availabilityDatesList = availabilityDates.map((timestamp) => DateTime.fromMillisecondsSinceEpoch(timestamp.millisecondsSinceEpoch)).toList();
+
     return Property(
       propertyId: data['propertyId'],
       propertyName: data['propertyName'],
       propertyDescription: data['propertyDescription'],
       location: data['location'],
-      imageUrls: data['imageUrls'],
-      amenities: data['amenities'],
+      imageUrls: imageUrlsList,
+      amenities: amenitiesList,
       longitude: data['longitude'],
       latitude: data['latitude'],
       rating: data['rating'],
-      availabilityDates: data['availabilityDates'],
-      reviews: data['reviews'],
+      availabilityDates: availabilityDatesList, 
+      reviews: reviewsList,
       pricePerNight: data['pricePerNight'],
       propertyType: data['propertyType'],
-      hostId: data['hostId'],
+      hostId: hostId,
       hostName: data['hostName'],
     );
   }

@@ -18,6 +18,8 @@ dependencies:
   flutter_facebook_auth: ^7.1.1
   flutter_bloc: ^8.1.6
   top_snackbar_flutter: ^3.1.0
+  intl: ^0.20.1
+  smooth_page_indicator: ^1.0.0
   
 
 dev_dependencies:

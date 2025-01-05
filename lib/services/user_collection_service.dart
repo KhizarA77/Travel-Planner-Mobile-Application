@@ -12,6 +12,13 @@ class UserCollectionService {
     return user.exists;
   }
 
+  Future<UserModel> getUserData(String uid) async {
+    DocumentSnapshot<Map<String, dynamic>> user = await _firestore.collection('users').doc(uid).get();
+    Map<String, dynamic> data = user.data()!;
+    data['uid'] = uid;
+    return UserModel.fromMap(data);
+  }
+
 
   Future<void> addUserToCollection({required UserModel userModel}) async {
     await _firestore.collection('users').doc(userModel.uid).set({
