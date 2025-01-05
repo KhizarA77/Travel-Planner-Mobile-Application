@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:travelhive/firebase_options.dart';
+import 'package:travelhive/views/bottom_nav_view/bottom_nav.dart';
 import 'package:travelhive/views/home_view/home_page.dart';
 import 'package:travelhive/views/login_view/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           // home: const LoginPage(),
           home: FirebaseAuth.instance.currentUser == null
               ? const LoginPage()
-              : HomePage(),
+              : BottomNav(),
         );
       },
     );

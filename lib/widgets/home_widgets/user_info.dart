@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travelhive/bloc/user_data_bloc/user_data_bloc.dart';
 import 'package:travelhive/bloc/user_data_bloc/user_data_state.dart';
 
@@ -50,8 +51,8 @@ class UserInfo extends StatelessWidget {
               ClipOval(
                 child: Image.network(
                     state.userData.photoUrl.isNotEmpty ? state.userData.photoUrl : FirebaseAuth.instance.currentUser!.photoURL ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLMI5YxZE03Vnj-s-sth2_JxlPd30Zy7yEGg&s',
-                  width: 70,
-                  height: 70,
+                  width: 50.w,
+                  height: 50.h,
                   fit: BoxFit.cover,
                 ),
               ),

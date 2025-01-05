@@ -8,19 +8,8 @@ import 'package:travelhive/widgets/home_widgets/page_container.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<UserDataBloc>(
-          create: (context) => UserDataBloc()
-            ..add(UserDataLoad(userId: FirebaseAuth.instance.currentUser!.uid)),
-        ),
-        BlocProvider<PropertyBloc>(
-          create: (context) => PropertyBloc()..add(FetchProperties()),
-        ),
-      ],
-      child: Scaffold(
-        body: const PageContainer(),
-      ),
+    return Scaffold(
+      body: const PageContainer(),
     );
   }
 }

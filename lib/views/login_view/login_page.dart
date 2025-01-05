@@ -23,37 +23,36 @@ class LoginPage extends StatelessWidget {
         backgroundColor: color,
       ),
       backgroundColor: color,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            CustomTextField(labelText: 'Email', obscureText: false, controller: emailController,),
-            CustomTextField(labelText: 'Password', obscureText: true, controller: passwordController,),
-            ForgetButton(emailController: emailController),
-            LoginButton(emailController: emailController, passwordController: passwordController,),
-            SizedBox(height: 10.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Don\'t have an account?', style: TextStyle(color: Colors.black, fontSize: 15.sp, fontWeight: FontWeight.bold),),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RegisterPage()),
-                    );
-                  },
-                  child: Text('Register', style: TextStyle(color: Color.fromARGB(255, 38, 0, 255), fontSize: 15.sp, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
-                ),
-              ],
-            ),
-            SizedBox(height: 5.h),
-            const Text('OR', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
-            SizedBox(height: 5.h),
-            const GoogleButton(),
-            const FacebookButton(),
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          CustomTextField(labelText: 'Email', obscureText: false, controller: emailController,),
+          CustomTextField(labelText: 'Password', obscureText: true, controller: passwordController,),
+          ForgetButton(emailController: emailController),
+          LoginButton(emailController: emailController, passwordController: passwordController,),
+          SizedBox(height: 10.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Don\'t have an account?', style: TextStyle(color: Colors.black, fontSize: 15.sp, fontWeight: FontWeight.bold),),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RegisterPage()),
+                  );
+                },
+                child: Text('Register', style: TextStyle(color: Color.fromARGB(255, 38, 0, 255), fontSize: 15.sp, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
+              ),
+            ],
+          ),
+          SizedBox(height: 5.h),
+          const Text('OR', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
+          SizedBox(height: 5.h),
+          const GoogleButton(),
+          const FacebookButton(),
+        ],
       ),
     );
   }
