@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextField extends StatefulWidget {
   final String labelText;
@@ -15,8 +16,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300,
-      padding: EdgeInsets.all(20),
+      width: 300.w,
+      padding: EdgeInsets.all(15.sp),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.0),
         // color: Colors.blueGrey[50],

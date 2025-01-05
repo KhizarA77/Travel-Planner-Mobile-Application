@@ -5,6 +5,7 @@ import 'package:travelhive/firebase_options.dart';
 import 'package:travelhive/views/home_view/home_page.dart';
 import 'package:travelhive/views/login_view/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,14 +22,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Travel Hive',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      // home: const LoginPage(),
-      home: FirebaseAuth.instance.currentUser == null ? const LoginPage() : HomePage(),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (context, child) {
+        return MaterialApp(
+          title: 'Travel Hive',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          // home: const LoginPage(),
+          home: FirebaseAuth.instance.currentUser == null
+              ? const LoginPage()
+              : HomePage(),
+        );
+      },
     );
   }
 }

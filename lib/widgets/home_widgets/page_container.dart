@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travelhive/widgets/home_widgets/custom_list_view.dart';
 import 'package:travelhive/widgets/home_widgets/listing_card.dart';
 import 'package:travelhive/widgets/home_widgets/search_bar.dart';
@@ -13,11 +14,11 @@ class PageContainer extends StatelessWidget {
       // margin: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 40),
       width: double.infinity, // Set the width of the container
       height: double.infinity, // Set the height of the container
-      padding: EdgeInsets.all(30),
+      padding: EdgeInsets.all(30.sp),
       decoration: BoxDecoration(
         color: Colors.white, // Background color (optional)
         border: Border.all(color: Colors.grey, width: 1), // Optional border
-        borderRadius: BorderRadius.circular(10), // Optional rounded corners
+        borderRadius: BorderRadius.circular(10.sp), // Optional rounded corners
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
@@ -30,9 +31,9 @@ class PageContainer extends StatelessWidget {
       child: Column(
         children: [
           UserInfo(),
-          const SizedBox(height: 15), // Vertical spacing
+          SizedBox(height: 25.h), // Vertical spacing
           CustomSearchBar(),
-          const SizedBox(height: 15), // Vertical spacing
+          SizedBox(height: 0.2.h), // Vertical spacing
           CustomListView(),
         ],
       ),

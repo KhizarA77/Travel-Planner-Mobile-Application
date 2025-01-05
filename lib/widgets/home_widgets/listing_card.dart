@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travelhive/models/property.dart';
 import 'package:intl/intl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -41,8 +42,8 @@ class _ListingCardState extends State<ListingCard> {
               children: [
                 Center(
                   child: Container(
-                    width: 50,
-                    height: 5,
+                    width: 50.w,
+                    height: 5.h,
                     decoration: BoxDecoration(
                       color: Colors.grey.shade300,
                       borderRadius: BorderRadius.circular(10),
@@ -106,7 +107,7 @@ class _ListingCardState extends State<ListingCard> {
     return GestureDetector(
       onTap: () => _showModalView(context),
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color: Colors.white,
@@ -127,7 +128,7 @@ class _ListingCardState extends State<ListingCard> {
                 ClipRRect(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
                   child: SizedBox(
-                    height: 200,
+                    height: 175.h,
                     width: double.infinity,
                     child: PageView.builder(
                       controller: _pageController,
@@ -142,8 +143,8 @@ class _ListingCardState extends State<ListingCard> {
                   ),
                 ),
                 Positioned(
-                  top: 10,
-                  right: 10,
+                  top: 10.h,
+                  right: 10.w,
                   child: Icon(
                     Icons.favorite_border,
                     color: Colors.white,
@@ -151,21 +152,21 @@ class _ListingCardState extends State<ListingCard> {
                 ),
               ],
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 6.h),
             Center(
               child: SmoothPageIndicator(
                 controller: _pageController,
                 count: widget.property.imageUrls.length,
                 effect: ExpandingDotsEffect(
-                  dotHeight: 8,
-                  dotWidth: 8,
+                  dotHeight: 8.h,
+                  dotWidth: 8.w,
                   activeDotColor: Colors.blue,
                   dotColor: Colors.grey.shade300,
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -176,7 +177,7 @@ class _ListingCardState extends State<ListingCard> {
                         child: Text(
                           widget.property.propertyName,
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
                           ),
                           overflow: TextOverflow.ellipsis,
@@ -189,7 +190,7 @@ class _ListingCardState extends State<ListingCard> {
                             color: Colors.yellow[700],
                             size: 16,
                           ),
-                          SizedBox(width: 4),
+                          SizedBox(width: 4.w),
                           Text(
                             widget.property.rating.toString(),
                             style: TextStyle(
@@ -201,27 +202,27 @@ class _ListingCardState extends State<ListingCard> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 4),
+                  SizedBox(height: 3.h),
                   Text(
                     widget.property.propertyDescription,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 12.sp,
                       color: Colors.grey,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  SizedBox(height: 4.h),
                   Text(
                     formatAvailabilityDates(widget.property.availabilityDates),
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 12.sp,
                       color: Colors.grey,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 6.h),
                   Text(
                     '\$${widget.property.pricePerNight}',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

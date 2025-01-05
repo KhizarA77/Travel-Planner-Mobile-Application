@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:travelhive/services/auth_service.dart';
@@ -30,11 +31,11 @@ class ForgetButton extends StatelessWidget {
           );
         }
       },
-      child: const Text(
+      child: Text(
         'Forgot Password?',
         style: TextStyle(
             color: Color.fromARGB(255, 38, 0, 255),
-            fontSize: 15,
+            fontSize: 15.sp,
             fontWeight: FontWeight.bold),
         textAlign: TextAlign.right,
       ),

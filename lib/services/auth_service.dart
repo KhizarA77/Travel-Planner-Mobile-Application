@@ -103,6 +103,7 @@ class AuthService {
           'photoUrl': userCredential.user!.photoURL ?? '',
           'wishlist': [],
           'notifications': [],
+          'bookings': [],
         };
         UserModel userModel = UserModel.fromMap(userMap);
         await _userCollectionService.addUserToCollection(userModel: userModel);
@@ -145,6 +146,7 @@ class AuthService {
           'photoUrl': userCredential.user!.photoURL ?? '',
           'wishlist': [],
           'notifications': [],
+          'bookings': [],
         };
         UserModel userModel = UserModel.fromMap(userMap);
         await _userCollectionService.addUserToCollection(userModel: userModel);

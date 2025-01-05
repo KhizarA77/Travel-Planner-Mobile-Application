@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:travelhive/services/auth_service.dart';
@@ -16,7 +17,7 @@ class LoginButton extends StatelessWidget {
     return Container(
       width: 250,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(30.0.sp),
         boxShadow: [
           BoxShadow(
             color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),

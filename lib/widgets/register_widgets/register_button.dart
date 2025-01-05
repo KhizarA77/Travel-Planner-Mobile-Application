@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travelhive/services/auth_service.dart';
 import 'package:travelhive/views/verification_view/verification_page.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -25,7 +26,7 @@ class RegisterButton extends StatelessWidget {
     return Container(
       width: 250,
       decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(30.0), boxShadow: [
+          BoxDecoration(borderRadius: BorderRadius.circular(30.0.sp), boxShadow: [
         BoxShadow(
           color: const Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
           spreadRadius: 1,
@@ -55,7 +56,7 @@ class RegisterButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
+                borderRadius: BorderRadius.circular(30.0.sp),
               ),
             ),
             onPressed: state is RegisterLoading
@@ -81,11 +82,11 @@ class RegisterButton extends StatelessWidget {
                 ? CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
                   )
-                : const Text(
+                : Text(
                     'Register',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 15,
+                        fontSize: 15.sp,
                         fontWeight: FontWeight.bold),
                   ),
           );
