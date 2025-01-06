@@ -18,6 +18,23 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final UserCollectionService _userCollectionService = UserCollectionService();
 
+
+  Future<String> updatePassword(String newPassword) async {
+    try {
+      User? user = _auth.currentUser;
+      if (user != null) {
+        await user.updatePassword(newPassword);
+        return 'Success';
+      } else {
+        return 'No user is currently signed in';
+      }
+    } on FirebaseAuthException catch (e) {
+      return e.message ?? 'An error occurred';
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
   Future<String> registerWithEmailPassword({required UserRegisterModel user, required String password}) async {
   try {
     UserCredential userCredential = await _auth.createUserWithEmailAndPassword(

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:travelhive/services/auth_service.dart';
+import 'package:travelhive/views/bottom_nav_view/bottom_nav.dart';
 import 'package:travelhive/views/home_view/home_page.dart';
 
 
@@ -39,7 +40,7 @@ class LoginButton extends StatelessWidget {
             final password = passwordController.text.trim();
             String response = await AuthService().signInWithEmailPassword(email:email, password:password);
             if(response == 'Success') {
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (_) => false);
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => BottomNav()), (_) => false);
             } else {
               showTopSnackBar(
                         Overlay.of(context),
