@@ -1,5 +1,7 @@
+// ignore_for_file: unused_element
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:travelhive/models/booking.dart';
+import 'package:travelhive/models/property.dart';
 import 'package:travelhive/models/user_model.dart';
 import 'package:travelhive/models/wishlist_item.dart';
 
@@ -31,6 +33,13 @@ class UserCollectionService {
     });
   }
 
+  Future<void> addBooking(
+      {required String uid, required Property booking}) async {
+    await _firestore.collection('users').doc(uid).update({
+      'bookings': FieldValue.arrayUnion([booking.toMap()]),
+    });
+  }
+
   Future<void> updateUserPhoto(
       {required String uid, required String url}) async {
     await _firestore.collection('users').doc(uid).update({
@@ -43,33 +52,26 @@ class UserCollectionService {
     await _firestore.collection('users').doc(uid).update({
       'name': name ?? '',
     });
+  }
 
-    Future<void> addWishlistItem(
-        {required String uid, required WishlistItem item}) async {
-      await _firestore.collection('users').doc(uid).update({
-        'wishlist': FieldValue.arrayUnion([item.toMap()]),
-      });
-    }
+  Future<void> addWishlistItem(
+      {required String uid, required WishlistItem item}) async {
+    await _firestore.collection('users').doc(uid).update({
+      'wishlist': FieldValue.arrayUnion([item.toMap()]),
+    });
+  }
 
-    Future<void> removeWishlistItem(
-        {required String uid, required WishlistItem item}) async {
-      await _firestore.collection('users').doc(uid).update({
-        'wishlist': FieldValue.arrayRemove([item.toMap()]),
-      });
-    }
+  Future<void> removeWishlistItem(
+      {required String uid, required WishlistItem item}) async {
+    await _firestore.collection('users').doc(uid).update({
+      'wishlist': FieldValue.arrayRemove([item.toMap()]),
+    });
+  }
 
-    Future<void> addBooking(
-        {required String uid, required Booking booking}) async {
-      await _firestore.collection('users').doc(uid).update({
-        'bookings': FieldValue.arrayUnion([booking.toMap()]),
-      });
-    }
-
-    Future<void> addNotification(
-        {required String uid, required String notification}) async {
-      await _firestore.collection('users').doc(uid).update({
-        'notifications': FieldValue.arrayUnion([notification]),
-      });
-    }
+  Future<void> addNotification(
+      {required String uid, required String notification}) async {
+    await _firestore.collection('users').doc(uid).update({
+      'notifications': FieldValue.arrayUnion([notification]),
+    });
   }
 }

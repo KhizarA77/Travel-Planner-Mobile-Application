@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:travelhive/firebase_options.dart';
 import 'package:travelhive/views/bottom_nav_view/bottom_nav.dart';
-import 'package:travelhive/views/home_view/home_page.dart';
 import 'package:travelhive/views/login_view/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +31,6 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          // home: const LoginPage(),
           home: FirebaseAuth.instance.currentUser == null
               ? const LoginPage()
               : BottomNav(),

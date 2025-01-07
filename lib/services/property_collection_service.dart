@@ -25,7 +25,7 @@ class PropertyCollectionService {
 
   Future<List<Property>> getProperties() async {
     try {
-      QuerySnapshot<Map<String, dynamic>> response = await _firestore.collection('properties').get();
+      QuerySnapshot<Map<String, dynamic>> response = await _firestore.collection('properties').where("availabilityDates", isNotEqualTo: []).get();
       List<Property> properties = response.docs.map((property) {
         Map<String, dynamic> data = property.data();
         data['propertyId'] = property.id;
@@ -36,4 +36,39 @@ class PropertyCollectionService {
       return [];
     }
   }
+
+  Future<String> updatePropertyAvailability(String? propertyId) async {
+    try {
+      DocumentSnapshot<Map<String, dynamic>> propertySnapshot = await _firestore.collection('properties').doc(propertyId).get();
+      if (propertySnapshot.exists) {
+        Map<String, dynamic>? data = propertySnapshot.data();
+        if (data != null && data.containsKey('availabilityDates')) {
+            List<DateTime> availabilityDates = (data['availabilityDates'] as List<dynamic>).map((timestamp) => DateTime.fromMillisecondsSinceEpoch(timestamp.millisecondsSinceEpoch)).toList();;
+            List<DateTime> availabilityDatesList = [];
+            if (availabilityDates.length > 1) {
+              DateTime secondDate = availabilityDates[1];
+              DateTime newDate = secondDate.add(Duration(days: 7));
+              availabilityDatesList.add(secondDate);
+              availabilityDatesList.add(newDate);
+            }
+          await _firestore.collection('properties').doc(propertyId).update({
+              'availabilityDates': availabilityDatesList.map((date) => Timestamp.fromDate(date)).toList(),
+            });
+          return 'Success';
+
+        } else {
+          return 'No availability dates found for this property.';
+        }
+      } else {
+        return 'Property not found.';
+      }
+    }
+    catch (e) {
+      return e.toString();
+    }
+
+
+  }
+
+
 }

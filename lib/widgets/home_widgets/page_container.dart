@@ -14,7 +14,7 @@ class PageContainer extends StatelessWidget {
       // margin: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 40),
       width: double.infinity, // Set the width of the container
       height: double.infinity, // Set the height of the container
-      padding: EdgeInsets.all(30.sp),
+      padding: EdgeInsets.only(top: 50.h, left: 25.w, right: 15.w, bottom: 40.h),
       decoration: BoxDecoration(
         color: Colors.white, // Background color (optional)
         border: Border.all(color: Colors.grey, width: 1), // Optional border
@@ -31,7 +31,7 @@ class PageContainer extends StatelessWidget {
       child: Column(
         children: [
           UserInfo(),
-          SizedBox(height: 25.h), // Vertical spacing
+          SizedBox(height: 15.h), // Vertical spacing
           CustomSearchBar(),
           SizedBox(height: 0.2.h), // Vertical spacing
           CustomListView(),

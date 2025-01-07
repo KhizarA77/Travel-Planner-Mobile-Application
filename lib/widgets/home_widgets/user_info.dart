@@ -26,8 +26,9 @@ class UserInfo extends StatelessWidget {
         else if (state is UserDataSuccess) {
           return Row(
             children: [
+              SizedBox(width: 5.w),
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -42,12 +43,12 @@ class UserInfo extends StatelessWidget {
                     'Explore the world',
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.grey,
+                      color: Colors.black,
                     ),
                   ),
                 ],
               ),
-              const Spacer(),
+              SizedBox(width: 150.w),
               ClipOval(
                 child: Image.network(
                     state.userData.photoUrl.isNotEmpty ? state.userData.photoUrl : FirebaseAuth.instance.currentUser!.photoURL ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLMI5YxZE03Vnj-s-sth2_JxlPd30Zy7yEGg&s',

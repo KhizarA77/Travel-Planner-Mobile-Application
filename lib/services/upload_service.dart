@@ -19,7 +19,7 @@ class UploadService {
       }
 
       final file = File(pickedFile.path);
-      final uri = Uri.parse('http://192.168.100.85:3000/upload');
+      final uri = Uri.parse('http://110.93.247.8:3000/upload');
       final request = http.MultipartRequest('POST', uri);
       final mimeTypeData =
           lookupMimeType(file.path, headerBytes: [0xFF, 0xD8])?.split('/');
@@ -52,8 +52,8 @@ class UploadService {
 
     try {
       final imageUrl = await uploadImage();
-      UserCollectionService().updateUserPhoto(uid: uid, url: "http://192.168.100.85:3000${imageUrl}");
-      return "http://192.168.100.85:3000${imageUrl}";
+      UserCollectionService().updateUserPhoto(uid: uid, url: "http://110.93.247.8:3000${imageUrl}");
+      return "http://110.93.247.8:3000${imageUrl}";
     } catch (e) {
       return e.toString();
     }

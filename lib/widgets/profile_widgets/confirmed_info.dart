@@ -10,13 +10,13 @@ class ConfirmedInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('${name}\'s confirmed information', style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
+        Text('${name}\'s Confirmed Information', style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold)),
         SizedBox(height: 10.h,),
         Row(
           children: [
             Icon(Icons.check_circle, color: Colors.black, size: 30.sp,),
             SizedBox(width: 10.w,),
-            Text('Email address', style: TextStyle(fontSize: 15.sp),),
+            Text('Email Address', style: TextStyle(fontSize: 15.sp),),
           ],
         ),
       ],

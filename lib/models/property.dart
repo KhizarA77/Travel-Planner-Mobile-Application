@@ -41,7 +41,7 @@ class Property {
     List<dynamic> amenities = data['amenities'] as List<dynamic>;
     List<dynamic> availabilityDates = data['availabilityDates'] as List<dynamic>;
     List<dynamic> reviews = data['reviews'] as List<dynamic>;
-    String hostId = data['hostId'].id;
+    // String hostId = data['hostId'].id;
 
     List<String> imageUrlsList = imageUrls.map((url) => url as String).toList();
     List<String> amenitiesList = amenities.map((amenity) => amenity as String).toList();
@@ -62,7 +62,7 @@ class Property {
       reviews: reviewsList,
       pricePerNight: data['pricePerNight'],
       propertyType: data['propertyType'],
-      hostId: hostId,
+      hostId: data['hostId'],
       hostName: data['hostName'],
     );
   }

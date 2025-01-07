@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travelhive/models/property.dart';
 import 'package:intl/intl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:travelhive/widgets/home_widgets/property_details.dart';
 
 class ListingCard extends StatefulWidget {
   final Property property;
@@ -23,89 +24,10 @@ class _ListingCardState extends State<ListingCard> {
     final formattedDates = dates.map((date) => DateFormat('d MMM').format(date)).toList();
     return '${formattedDates.first} – ${formattedDates.last}';
   }
-
-  void _showModalView(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Center(
-                  child: Container(
-                    width: 50.w,
-                    height: 5.h,
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  widget.property.propertyName,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  widget.property.propertyDescription,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey.shade600,
-                  ),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Availability: ${formatAvailabilityDates(widget.property.availabilityDates)}',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey.shade600,
-                  ),
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Price per night: \$${widget.property.pricePerNight}',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context); // Close modal
-                  },
-                  child: Text('Close'),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _showModalView(context),
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PropertyDetailsPage(property: widget.property))),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
         decoration: BoxDecoration(

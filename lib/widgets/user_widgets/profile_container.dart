@@ -15,7 +15,7 @@ class ProfileContainer extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       padding: EdgeInsets.only(top:40.h, left: 20.w, right: 10.w),
-      color: Colors.white,
+      color: const Color.fromARGB(255, 255, 255, 255),
       child: Column(
         children: [
           ProfileCard(),

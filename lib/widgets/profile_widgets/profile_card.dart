@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travelhive/bloc/user_data_bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelhive/services/upload_service.dart';
 import 'package:travelhive/services/user_collection_service.dart';
 
@@ -27,11 +29,11 @@ class _ProfileCardState extends State<ProfileCard> {
   }
 
   void _changeName(String _name) {
+      UserCollectionService().updateUserName(uid: FirebaseAuth.instance.currentUser!.uid, name: _name);
     // Implement your logic to change the name
     setState(() {
       name = _name;
-      UserCollectionService().updateUserName(
-          uid: FirebaseAuth.instance.currentUser!.uid, name: _name);
+      BlocProvider.of<UserDataBloc>(context).add(UserDataLoad(userId: FirebaseAuth.instance.currentUser!.uid));
     });
   }
 
@@ -40,6 +42,7 @@ class _ProfileCardState extends State<ProfileCard> {
     // Implement your logic to change the photo
     setState(() {
       photoURL = _photoURL;
+      BlocProvider.of<UserDataBloc>(context).add(UserDataLoad(userId: FirebaseAuth.instance.currentUser!.uid));
     });
   }
 
@@ -67,7 +70,7 @@ class _ProfileCardState extends State<ProfileCard> {
             children: [
               ClipOval(
                 child: Image.network(
-                  photoURL.isEmpty ? (FirebaseAuth.instance.currentUser!.photoURL ?? 'default_photo_url') : photoURL,
+                  photoURL.isEmpty ? (FirebaseAuth.instance.currentUser!.photoURL ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLMI5YxZE03Vnj-s-sth2_JxlPd30Zy7yEGg&s') : photoURL,
                   width: 60.w,
                   height: 60.h,
                   fit: BoxFit.cover,
@@ -88,8 +91,10 @@ class _ProfileCardState extends State<ProfileCard> {
             ],
           ),
           SizedBox(height: 10.h),
-          Stack(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(width: 17.w),
               Text(
                 name,
                 style: TextStyle(
@@ -98,46 +103,44 @@ class _ProfileCardState extends State<ProfileCard> {
                   color: Colors.black,
                 ),
               ),
-              Positioned(
-                right: -20,
-                child: GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        TextEditingController _controller =
-                            TextEditingController(text: name);
-                        return AlertDialog(
-                          title: Text('Edit Name'),
-                          content: TextField(
-                            controller: _controller,
-                            decoration:
-                                InputDecoration(hintText: "Enter new name"),
+              SizedBox(width: 5.w),
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      TextEditingController _controller =
+                          TextEditingController(text: name);
+                      return AlertDialog(
+                        title: Text('Edit Name'),
+                        content: TextField(
+                          controller: _controller,
+                          decoration:
+                              InputDecoration(hintText: "Enter new name"),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Cancel'),
                           ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('Cancel'),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                _changeName(_controller.text);
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('OK'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                  child: Icon(
-                    Icons.edit,
-                    size: 20.w,
-                    color: Colors.black,
-                  ),
+                          TextButton(
+                            onPressed: () {
+                              _changeName(_controller.text);
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Icon(
+                  Icons.edit,
+                  size: 20.w,
+                  color: Colors.black,
                 ),
               ),
             ],

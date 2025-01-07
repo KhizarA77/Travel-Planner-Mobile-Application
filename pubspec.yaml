@@ -24,6 +24,7 @@ dependencies:
   persistent_bottom_nav_bar_v2: ^5.3.1
   image_picker: ^1.1.2
   mime: ^2.0.0
+  google_maps_flutter: ^2.10.0
   
 
 dev_dependencies:
