@@ -64,14 +64,6 @@ class _ListingCardState extends State<ListingCard> {
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 10.h,
-                  right: 10.w,
-                  child: Icon(
-                    Icons.favorite_border,
-                    color: Colors.white,
-                  ),
-                ),
               ],
             ),
             SizedBox(height: 6.h),

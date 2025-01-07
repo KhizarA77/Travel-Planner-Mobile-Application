@@ -12,7 +12,7 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:travelhive/services/property_collection_service.dart';
 import 'package:travelhive/services/user_collection_service.dart';
-
+import 'package:flutter_stripe/flutter_stripe.dart';
 class PropertyDetailsPage extends StatefulWidget {
   final Property property;
 
@@ -66,15 +66,6 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                               );
                             },
                           ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 16.h,
-                        right: 16.w,
-                        child: IconButton(
-                          onPressed: () {},
-                          icon:
-                              Icon(Icons.favorite_border, color: Colors.white),
                         ),
                       ),
                     ],

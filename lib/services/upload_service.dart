@@ -10,6 +10,38 @@ class UploadService {
 
   static const String ip = "http://110.93.247.8:3000";
 
+  Future<String> uploadImageToServer(XFile image) async {
+    try {
+      final file = File(image.path);
+      final uri = Uri.parse('${ip}/upload');
+      final request = http.MultipartRequest('POST', uri);
+      final mimeTypeData = lookupMimeType(file.path, headerBytes: [0xFF, 0xD8])?.split('/');
+
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          'image',
+          file.path,
+          contentType: mimeTypeData != null
+              ? MediaType(mimeTypeData[0], mimeTypeData[1])
+              : null,
+        ),
+      );
+
+      final response = await request.send();
+
+      if (response.statusCode == 200) {
+        final responseData = await http.Response.fromStream(response);
+        final responseBody = jsonDecode(responseData.body);
+        return responseBody['url'];
+      } else {
+        throw Exception('Failed to upload image');
+      }
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+
   Future<String> uploadImage() async {
     try {
       final picker = ImagePicker();
@@ -22,8 +54,7 @@ class UploadService {
       final file = File(pickedFile.path);
       final uri = Uri.parse('${ip}/upload');
       final request = http.MultipartRequest('POST', uri);
-      final mimeTypeData =
-          lookupMimeType(file.path, headerBytes: [0xFF, 0xD8])?.split('/');
+      final mimeTypeData = lookupMimeType(file.path, headerBytes: [0xFF, 0xD8])?.split('/');
 
       request.files.add(
         await http.MultipartFile.fromPath(

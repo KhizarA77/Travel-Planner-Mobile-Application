@@ -32,15 +32,15 @@ class ProfileCard extends StatelessWidget {
                       TextStyle(fontSize: 25.sp, fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
-                IconButton(
-                    onPressed: () {
-                      // show notifications
-                    },
-                    icon: Icon(
-                      Icons.notifications_none,
-                      size: 25.sp,
-                    color: Colors.black,
-                    )),
+                // IconButton(
+                //     onPressed: () {
+                //       // show notifications
+                //     },
+                //     icon: Icon(
+                //       Icons.notifications_none,
+                //       size: 25.sp,
+                //     color: Colors.black,
+                //     )),
               ],
             ),
             SizedBox(

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travelhive/services/auth_service.dart';
 import 'package:travelhive/views/bookings_view/booking_page.dart';
 import 'package:travelhive/views/change_password_view/change_password_page.dart';
+import 'package:travelhive/views/host_view/host_page.dart';
 import 'package:travelhive/views/login_view/login_page.dart';
 import 'package:travelhive/views/personal_info_view/personal_page.dart';
 
@@ -119,6 +120,7 @@ class Settings extends StatelessWidget {
         InkWell(
           onTap: () {
             // Host your space
+            Navigator.push(context, MaterialPageRoute(builder: (context) => HostPage()));
           },
           child: Row(
             children: [
