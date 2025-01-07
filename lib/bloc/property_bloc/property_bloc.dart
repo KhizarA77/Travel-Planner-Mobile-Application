@@ -10,12 +10,27 @@ class PropertyBloc extends Bloc<PropertyEvent, PropertyState> {
 
   PropertyBloc() : super(PropertyInitial()) {
     on<FetchProperties>(_onPropertyFetch);
+    on<SearchProperties>(_onPropertySearch);
   }
 
   Future<void> _onPropertyFetch(FetchProperties event, Emitter<PropertyState> emit) async {
     emit(PropertyLoading());
     try {
       final List<Property> response = await PropertyCollectionService().getProperties();
+      if (response.isEmpty) {
+        emit(PropertyFailure(error: 'No properties found'));
+        return;
+      }
+      emit(PropertySuccess(properties: response));
+    } catch (error) {
+      emit(PropertyFailure(error: error.toString()));
+    }
+  }
+
+  Future<void> _onPropertySearch(SearchProperties event, Emitter<PropertyState> emit) async {
+    emit(PropertyLoading());
+    try {
+      final List<Property> response = await PropertyCollectionService().searchProperties(event.query);
       if (response.isEmpty) {
         emit(PropertyFailure(error: 'No properties found'));
         return;

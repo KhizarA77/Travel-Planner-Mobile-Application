@@ -66,39 +66,5 @@ class UserInfo extends StatelessWidget {
       } 
     );
 
-    // return Row(
-    //   children: [
-    //     Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: [
-    //         Text(
-    //           'Hi, David 👋',
-    //           style: TextStyle(
-    //             fontSize: 20,
-    //             fontWeight: FontWeight.bold,
-    //             color: Colors.black,
-    //           ),
-    //         ),
-    //         Text(
-    //           'Explore the world',
-    //           style: TextStyle(
-    //             fontSize: 14,
-    //             color: Colors.grey,
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //     const Spacer(),
-    //     ClipOval(
-    //       child: Image.network(
-    //         'http://192.168.100.164:3000/uploads/390e6682-e4f6-4332-8ee9-67428760447e.png',
-    //         width: 100,
-    //         height: 100,
-    //         fit: BoxFit.cover,
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 }

@@ -118,8 +118,7 @@ class Settings extends StatelessWidget {
         const Divider(),
         InkWell(
           onTap: () {
-            // Navigator.push(context,
-            //     MaterialPageRoute(builder: (context) => ManageBookings()));
+            // Host your space
           },
           child: Row(
             children: [

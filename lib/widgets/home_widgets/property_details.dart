@@ -37,24 +37,18 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          // title: Text(widget.property.propertyName),
-          // backgroundColor: Colors.white,
-          // elevation: 0,
-          ),
+      appBar: AppBar(),
       body: Container(
         padding:
             EdgeInsets.only(top: 20.h, left: 16.w, right: 16.w, bottom: 60.h),
         child: Stack(
           children: [
-            // Main content
             SingleChildScrollView(
               padding: EdgeInsets.only(
-                  bottom: 80.h), // Add bottom padding for the button
+                  bottom: 80.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Image carousel
                   Stack(
                     children: [
                       ClipRRect(
@@ -136,7 +130,6 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                           ),
                         ),
                         SizedBox(height: 8.h),
-                        // SizedBox(height: 16.h),
                         Text(
                           'Rating: ${widget.property.rating}',
                           style: TextStyle(
@@ -201,7 +194,6 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                 ],
               ),
             ),
-            // Persistent "Book Now" Button
             Positioned(
               bottom: 0,
               left: 0,
@@ -239,19 +231,19 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                       );
                     }
                   },
-                  child: Text(
-                    'Book Now for \$${widget.property.pricePerNight}',
-                    style: TextStyle(
-                        fontSize: 16.sp,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                     padding: EdgeInsets.symmetric(vertical: 16.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
+                  ),
+                  child: Text(
+                    'Book Now for \$${widget.property.pricePerNight}',
+                    style: TextStyle(
+                        fontSize: 16.sp,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

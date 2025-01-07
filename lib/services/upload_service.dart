@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -9,6 +7,9 @@ import 'package:mime/mime.dart';
 import 'package:travelhive/services/user_collection_service.dart';
 
 class UploadService {
+
+  static const String ip = "http://110.93.247.8:3000";
+
   Future<String> uploadImage() async {
     try {
       final picker = ImagePicker();
@@ -19,7 +20,7 @@ class UploadService {
       }
 
       final file = File(pickedFile.path);
-      final uri = Uri.parse('http://110.93.247.8:3000/upload');
+      final uri = Uri.parse('${ip}/upload');
       final request = http.MultipartRequest('POST', uri);
       final mimeTypeData =
           lookupMimeType(file.path, headerBytes: [0xFF, 0xD8])?.split('/');
@@ -52,8 +53,8 @@ class UploadService {
 
     try {
       final imageUrl = await uploadImage();
-      UserCollectionService().updateUserPhoto(uid: uid, url: "http://110.93.247.8:3000${imageUrl}");
-      return "http://110.93.247.8:3000${imageUrl}";
+      UserCollectionService().updateUserPhoto(uid: uid, url: "${ip}${imageUrl}");
+      return "${ip}${imageUrl}";
     } catch (e) {
       return e.toString();
     }

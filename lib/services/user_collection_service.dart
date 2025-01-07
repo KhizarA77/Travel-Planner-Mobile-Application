@@ -3,7 +3,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:travelhive/models/property.dart';
 import 'package:travelhive/models/user_model.dart';
-import 'package:travelhive/models/wishlist_item.dart';
 
 class UserCollectionService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -55,14 +54,14 @@ class UserCollectionService {
   }
 
   Future<void> addWishlistItem(
-      {required String uid, required WishlistItem item}) async {
+      {required String uid, required Property item}) async {
     await _firestore.collection('users').doc(uid).update({
       'wishlist': FieldValue.arrayUnion([item.toMap()]),
     });
   }
 
   Future<void> removeWishlistItem(
-      {required String uid, required WishlistItem item}) async {
+      {required String uid, required Property item}) async {
     await _firestore.collection('users').doc(uid).update({
       'wishlist': FieldValue.arrayRemove([item.toMap()]),
     });

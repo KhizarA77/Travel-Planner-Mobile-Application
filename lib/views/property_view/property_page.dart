@@ -23,7 +23,6 @@ class PropertyDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image Carousel
             SizedBox(
               height: 300,
               child: PageView.builder(

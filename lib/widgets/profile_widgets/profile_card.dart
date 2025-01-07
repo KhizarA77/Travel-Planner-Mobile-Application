@@ -39,7 +39,6 @@ class _ProfileCardState extends State<ProfileCard> {
 
   void _changePhoto() async {
     String _photoURL = await UploadService().updateImageInCollection(FirebaseAuth.instance.currentUser!.uid);
-    // Implement your logic to change the photo
     setState(() {
       photoURL = _photoURL;
       BlocProvider.of<UserDataBloc>(context).add(UserDataLoad(userId: FirebaseAuth.instance.currentUser!.uid));

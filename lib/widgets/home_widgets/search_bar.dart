@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travelhive/bloc/property_bloc/bloc.dart';
 
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({Key? key}) : super(key: key);
@@ -12,47 +14,31 @@ class CustomSearchBar extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(25.sp),
         border:
-            Border.all(color: Colors.grey, width: 1.w), // Border color and width
+            Border.all(color: Colors.grey, width: 1.w),
       ),
       child: Row(
         children: [
-          SizedBox(width: 15.w), // Left padding
+          SizedBox(width: 15.w),
           Icon(
             Icons.search,
-            color: Colors.grey, // Icon color
+            color: Colors.grey, 
           ),
-          SizedBox(width: 5.w), // Spacing between icon and text
+          SizedBox(width: 5.w),
           Expanded(
             child: TextField(
               decoration: InputDecoration(
-                hintText: 'Search places', // Placeholder text
+                hintText: 'Search places',
                 hintStyle: TextStyle(
-                  color: Colors.grey, // Hint text color
-                  fontSize: 16.sp, // Font size
+                  color: Colors.grey,
+                  fontSize: 16.sp,
                 ),
-                border: InputBorder.none, // Remove the border
+                border: InputBorder.none, 
               ),
               onChanged: (value) {
-                // Handle search input changes
-                print('Search input: $value');
+                BlocProvider.of<PropertyBloc>(context).add(SearchProperties(query: value));
+
               },
             ),
-          ),
-          VerticalDivider(
-            color: Colors.grey, // Divider color
-            width: 1.w, // Divider thickness
-            indent: 10.h, // Top padding for divider
-            endIndent: 10.w, // Bottom padding for divider
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.tune, // Filter icon
-              color: Colors.grey, // Icon color
-            ),
-            onPressed: () {
-              // Action for filter button
-              print('Filter button clicked');
-            },
           ),
         ],
       ),

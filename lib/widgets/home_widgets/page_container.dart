@@ -12,28 +12,28 @@ class PageContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // margin: EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 40),
-      width: double.infinity, // Set the width of the container
-      height: double.infinity, // Set the height of the container
+      width: double.infinity,
+      height: double.infinity,
       padding: EdgeInsets.only(top: 50.h, left: 25.w, right: 15.w, bottom: 40.h),
       decoration: BoxDecoration(
-        color: Colors.white, // Background color (optional)
-        border: Border.all(color: Colors.grey, width: 1), // Optional border
-        borderRadius: BorderRadius.circular(10.sp), // Optional rounded corners
+        color: Colors.white, 
+        border: Border.all(color: Colors.grey, width: 1),
+        borderRadius: BorderRadius.circular(10.sp), 
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 2,
             blurRadius: 5,
-            offset: Offset(0, 2), // Shadow position
+            offset: Offset(0, 2), 
           ),
         ],
       ),
       child: Column(
         children: [
           UserInfo(),
-          SizedBox(height: 15.h), // Vertical spacing
+          SizedBox(height: 15.h), 
           CustomSearchBar(),
-          SizedBox(height: 0.2.h), // Vertical spacing
+          SizedBox(height: 0.2.h),
           CustomListView(),
         ],
       ),
