@@ -3,8 +3,6 @@ import 'package:sign_in_button/sign_in_button.dart';
 import 'package:flutter/material.dart';
 import 'package:travelhive/services/auth_service.dart';
 import 'package:travelhive/views/bottom_nav_view/bottom_nav.dart';
-import 'package:travelhive/views/home_view/home_page.dart';
-
 
 class GoogleButton extends StatelessWidget {
 

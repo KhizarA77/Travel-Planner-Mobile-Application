@@ -32,16 +32,6 @@ class _HostPageState extends State<HostPage> {
   final TextEditingController _propertyTypeController = TextEditingController();
   final TextEditingController _countryController = TextEditingController();
 
-  // @override
-  // // void dispose() {
-  // //   _amenityControllers.forEach((controller) => controller.dispose());
-  // //   _locationController.dispose();
-  // //   _priceController.dispose();
-  // //   _propertyDescriptionController.dispose();
-  // //   _propertyNameController.dispose();
-  // //   _propertyTypeController.dispose();
-  // //   super.dispose();
-  // // }
 
   Future<void> _pickImages() async {
     final ImagePicker picker = ImagePicker();

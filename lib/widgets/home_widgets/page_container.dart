@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travelhive/widgets/home_widgets/custom_list_view.dart';
-import 'package:travelhive/widgets/home_widgets/listing_card.dart';
 import 'package:travelhive/widgets/home_widgets/search_bar.dart';
 import 'package:travelhive/widgets/home_widgets/user_info.dart';
 

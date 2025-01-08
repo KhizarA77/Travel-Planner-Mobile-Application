@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:travelhive/firebase_options.dart';
 import 'package:travelhive/views/bottom_nav_view/bottom_nav.dart';
 import 'package:travelhive/views/login_view/login_page.dart';
@@ -14,7 +13,6 @@ Future<void> main() async {
   FirebaseFirestore.instance.settings = const Settings(
     persistenceEnabled: true,
   );
-  Stripe.publishableKey = "pk_test_51QekIEJ14IysDZCvsncqJQGwnivuVfLxFzIwlEAgOunpyZj5mRDZUcsKb7gVm10fhYqygwOnYN47SAKwWqBNhnKy00z8YwNNUH";
   runApp(const MyApp());
 }
 

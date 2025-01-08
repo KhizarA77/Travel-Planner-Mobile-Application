@@ -26,6 +26,7 @@ dependencies:
   mime: ^2.0.0
   google_maps_flutter: ^2.10.0
   flutter_stripe: ^11.3.0
+  golden_toolkit: ^0.15.0
   
 
 dev_dependencies:
