@@ -8,8 +8,7 @@ import 'package:travelhive/views/card_view/card_page.dart';
 class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserDataBloc, UserDataState>(
-      builder: (context, state) {
+    return BlocBuilder<UserDataBloc, UserDataState>(builder: (context, state) {
       if (state is UserDataLoading) {
         return Center(
           child: CircularProgressIndicator(),
@@ -25,7 +24,9 @@ class ProfileCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                SizedBox(width: 5.w,),
+                SizedBox(
+                  width: 5.w,
+                ),
                 Text(
                   'Profile',
                   style:
@@ -48,7 +49,14 @@ class ProfileCard extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => CardPage(name: state.userData.name.split(' ')[0], photo: state.userData.photoUrl,)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BlocProvider.value(
+                        value: BlocProvider.of<UserDataBloc>(context),
+                        child: CardPage(name: state.userData.name.split(' ')[0]),
+                      ),
+                    ));
               },
               child: Row(
                 children: [
@@ -71,7 +79,8 @@ class ProfileCard extends StatelessWidget {
                     children: [
                       Text(
                         state.userData.name.split(' ')[0],
-                        style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 20.sp, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         'View Profile',
@@ -89,9 +98,7 @@ class ProfileCard extends StatelessWidget {
             ),
           ],
         );
-
-      }
-      else {
+      } else {
         return Container();
       }
     });

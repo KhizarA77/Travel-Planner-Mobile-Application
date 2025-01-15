@@ -5,19 +5,12 @@ import 'package:intl/intl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:travelhive/widgets/home_widgets/property_details.dart';
 
-class ListingCard extends StatefulWidget {
+class ListingCard extends StatelessWidget {
   final Property property;
-
-  const ListingCard({
+  final PageController _pageController = PageController();
+  ListingCard({
     required this.property,
   });
-
-  @override
-  _ListingCardState createState() => _ListingCardState();
-}
-
-class _ListingCardState extends State<ListingCard> {
-  final PageController _pageController = PageController();
 
   String formatAvailabilityDates(List<DateTime> dates) {
     if (dates.isEmpty) return 'No availability';
@@ -27,7 +20,7 @@ class _ListingCardState extends State<ListingCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PropertyDetailsPage(property: widget.property))),
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PropertyDetailsPage(property: property))),
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 5.w),
         decoration: BoxDecoration(
@@ -54,10 +47,10 @@ class _ListingCardState extends State<ListingCard> {
                     width: double.infinity,
                     child: PageView.builder(
                       controller: _pageController,
-                      itemCount: widget.property.imageUrls.length,
+                      itemCount: property.imageUrls.length,
                       itemBuilder: (context, index) {
                         return Image.network(
-                          widget.property.imageUrls[index],
+                          property.imageUrls[index],
                           fit: BoxFit.cover,
                         );
                       },
@@ -70,7 +63,7 @@ class _ListingCardState extends State<ListingCard> {
             Center(
               child: SmoothPageIndicator(
                 controller: _pageController,
-                count: widget.property.imageUrls.length,
+                count: property.imageUrls.length,
                 effect: ExpandingDotsEffect(
                   dotHeight: 8.h,
                   dotWidth: 8.w,
@@ -89,7 +82,7 @@ class _ListingCardState extends State<ListingCard> {
                     children: [
                       Expanded(
                         child: Text(
-                          widget.property.propertyName,
+                          property.propertyName,
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
@@ -106,7 +99,7 @@ class _ListingCardState extends State<ListingCard> {
                           ),
                           SizedBox(width: 4.w),
                           Text(
-                            widget.property.rating.toString(),
+                            property.rating.toString(),
                             style: TextStyle(
                               fontSize: 14,
                               color: Colors.grey,
@@ -118,7 +111,7 @@ class _ListingCardState extends State<ListingCard> {
                   ),
                   SizedBox(height: 3.h),
                   Text(
-                    widget.property.propertyDescription,
+                    property.propertyDescription,
                     style: TextStyle(
                       fontSize: 12.sp,
                       color: Colors.grey,
@@ -126,7 +119,7 @@ class _ListingCardState extends State<ListingCard> {
                   ),
                   SizedBox(height: 4.h),
                   Text(
-                    formatAvailabilityDates(widget.property.availabilityDates),
+                    formatAvailabilityDates(property.availabilityDates),
                     style: TextStyle(
                       fontSize: 12.sp,
                       color: Colors.grey,
@@ -134,7 +127,7 @@ class _ListingCardState extends State<ListingCard> {
                   ),
                   SizedBox(height: 6.h),
                   Text(
-                    '\$${widget.property.pricePerNight}',
+                    '\$${property.pricePerNight}',
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
@@ -148,4 +141,5 @@ class _ListingCardState extends State<ListingCard> {
       ),
     );
   }
+
 }

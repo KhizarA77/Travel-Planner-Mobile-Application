@@ -12,19 +12,13 @@ import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:travelhive/services/property_collection_service.dart';
 import 'package:travelhive/services/user_collection_service.dart';
-class PropertyDetailsPage extends StatefulWidget {
+class PropertyDetailsPage extends StatelessWidget {
   final Property property;
+  final PageController _pageController = PageController();
 
-  const PropertyDetailsPage({
+  PropertyDetailsPage({
     required this.property,
   });
-
-  @override
-  _PropertyDetailsPageState createState() => _PropertyDetailsPageState();
-}
-
-class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
-  final PageController _pageController = PageController();
 
   String formatAvailabilityDates(List<DateTime> dates) {
     if (dates.isEmpty) return 'No availability';
@@ -57,10 +51,10 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                           width: double.infinity,
                           child: PageView.builder(
                             controller: _pageController,
-                            itemCount: widget.property.imageUrls.length,
+                            itemCount: property.imageUrls.length,
                             itemBuilder: (context, index) {
                               return Image.network(
-                                widget.property.imageUrls[index],
+                                property.imageUrls[index],
                                 fit: BoxFit.cover,
                               );
                             },
@@ -73,7 +67,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                   Center(
                     child: SmoothPageIndicator(
                       controller: _pageController,
-                      count: widget.property.imageUrls.length,
+                      count: property.imageUrls.length,
                       effect: ExpandingDotsEffect(
                         dotHeight: 8.h,
                         dotWidth: 8.w,
@@ -88,7 +82,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.property.propertyName,
+                          property.propertyName,
                           style: TextStyle(
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold,
@@ -96,7 +90,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                         ),
                         SizedBox(height: 8.h),
                         Text(
-                          'Hosted by ${widget.property.hostName}',
+                          'Hosted by ${property.hostName}',
                           style: TextStyle(
                             fontSize: 16.sp,
                             color: Colors.black,
@@ -104,7 +98,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                         ),
                         SizedBox(height: 8.h),
                         Text(
-                          widget.property.propertyDescription,
+                          property.propertyDescription,
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: Colors.black,
@@ -113,7 +107,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                         const Divider(),
                         SizedBox(height: 5.h),
                         Text(
-                          'Availability: ${formatAvailabilityDates(widget.property.availabilityDates)}',
+                          'Availability: ${formatAvailabilityDates(property.availabilityDates)}',
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: Colors.black,
@@ -121,7 +115,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                         ),
                         SizedBox(height: 8.h),
                         Text(
-                          'Rating: ${widget.property.rating}',
+                          'Rating: ${property.rating}',
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: Colors.black,
@@ -138,7 +132,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                           ),
                         ),
                         SizedBox(height: 8.h),
-                        ...widget.property.amenities.map(
+                        ...property.amenities.map(
                           (amenity) => Padding(
                             padding: EdgeInsets.only(bottom: 4.h),
                             child: Row(
@@ -164,15 +158,15 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                           height: 200.h,
                           child: GoogleMap(
                             initialCameraPosition: CameraPosition(
-                              target: LatLng(widget.property.latitude,
-                                  widget.property.longitude),
+                              target: LatLng(property.latitude,
+                                  property.longitude),
                               zoom: 14,
                             ),
                             markers: {
                               Marker(
                                 markerId: MarkerId('propertyLocation'),
-                                position: LatLng(widget.property.latitude,
-                                    widget.property.longitude),
+                                position: LatLng(property.latitude,
+                                    property.longitude),
                               ),
                             },
                           ),
@@ -195,10 +189,10 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                 child: ElevatedButton(
                   onPressed: () async {
                     try {
-                      await UserCollectionService().addBooking(uid: FirebaseAuth.instance.currentUser!.uid, booking: widget.property);
+                      await UserCollectionService().addBooking(uid: FirebaseAuth.instance.currentUser!.uid, booking: property);
                       final response = await PropertyCollectionService()
                           .updatePropertyAvailability(
-                              widget.property.propertyId);
+                              property.propertyId);
                       if (response == 'Success') {
                         showTopSnackBar(
                           Overlay.of(context),
@@ -229,7 +223,7 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
                     ),
                   ),
                   child: Text(
-                    'Book Now for \$${widget.property.pricePerNight}',
+                    'Book Now for \$${property.pricePerNight}',
                     style: TextStyle(
                         fontSize: 16.sp,
                         color: Colors.black,
@@ -243,4 +237,5 @@ class _PropertyDetailsPageState extends State<PropertyDetailsPage> {
       ),
     );
   }
+
 }

@@ -5,8 +5,8 @@ import 'package:travelhive/widgets/profile_widgets/profile_card.dart';
 
 class CardPage extends StatelessWidget {
   final String name;
-  final String photo;
-  const CardPage({Key? key, required this.name, required this.photo}) : super(key: key);
+  // final String photo;
+  const CardPage({Key? key, required this.name}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +20,7 @@ class CardPage extends StatelessWidget {
         color: Colors.white,
         child: Column(
           children: [
-            ProfileCard(name: name, photoURL: photo),
+            ProfileCard(),
             SizedBox(height: 20.h,),
             ConfirmedInfo(name: name)
           ],
