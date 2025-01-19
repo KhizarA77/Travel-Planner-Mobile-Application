@@ -1,3 +1,5 @@
+// login_page.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travelhive/views/register_view/register_page.dart';
@@ -23,36 +25,49 @@ class LoginPage extends StatelessWidget {
         backgroundColor: color,
       ),
       backgroundColor: color,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          CustomTextField(labelText: 'Email', obscureText: false, controller: emailController,),
-          CustomTextField(labelText: 'Password', obscureText: true, controller: passwordController,),
-          ForgetButton(emailController: emailController),
-          LoginButton(emailController: emailController, passwordController: passwordController,),
-          SizedBox(height: 10.h),
-          Row(
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 100.h),
+        margin: EdgeInsets.all(20.sp),
+        width: double.infinity,
+        height: double.infinity,
+        color: color,
+        child: SingleChildScrollView(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Don\'t have an account?', style: TextStyle(color: Colors.black, fontSize: 15.sp, fontWeight: FontWeight.bold),),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()),
-                  );
-                },
-                child: Text('Register', style: TextStyle(color: Color.fromARGB(255, 38, 0, 255), fontSize: 15.sp, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              CustomTextField(labelText: 'Email', obscureText: false, controller: emailController,),
+              CustomTextField(labelText: 'Password', obscureText: true, controller: passwordController,),
+              ForgetButton(emailController: emailController),
+              LoginButton(emailController: emailController, passwordController: passwordController,),
+              SizedBox(height: 10.h),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Don\'t have an account?', style: TextStyle(color: Colors.black, fontSize: 15.sp, fontWeight: FontWeight.bold),),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => RegisterPage()),
+                        );
+                      },
+                      child: Text('Register', style: TextStyle(color: Color.fromARGB(255, 38, 0, 255), fontSize: 15.sp, fontWeight: FontWeight.bold), textAlign: TextAlign.start,),
+                    ),
+                  ],
+                ),
               ),
+              SizedBox(height: 5.h),
+              const Text('OR', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
+              SizedBox(height: 10.h),
+              const GoogleButton(),
+              SizedBox(height: 10.h),
+              const FacebookButton(),
             ],
           ),
-          SizedBox(height: 5.h),
-          const Text('OR', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
-          SizedBox(height: 5.h),
-          const GoogleButton(),
-          const FacebookButton(),
-        ],
+        ),
       ),
     );
   }

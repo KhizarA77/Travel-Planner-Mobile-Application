@@ -1,3 +1,5 @@
+// forget_button.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -13,8 +15,18 @@ class ForgetButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () async {
+        final String _email = emailController.text.trim();
+        if (_email.isEmpty) {
+          showTopSnackBar(
+            Overlay.of(context),
+            CustomSnackBar.error(
+              message: "Email cannot be empty",
+            ),
+          );
+          return;
+        } 
         String response = await AuthService()
-            .resetPassword(email: emailController.text.trim());
+            .resetPassword(email: _email);
         if (response == 'A password reset link has been sent to your email') {
           showTopSnackBar(
             Overlay.of(context),

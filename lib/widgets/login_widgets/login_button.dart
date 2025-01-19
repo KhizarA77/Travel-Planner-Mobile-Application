@@ -1,3 +1,5 @@
+// login_button.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
@@ -35,8 +37,13 @@ class LoginButton extends StatelessWidget {
           ),
         ),
         onPressed: () async {
+            try {
+
             final email = emailController.text.trim();
             final password = passwordController.text.trim();
+            if (email.isEmpty || password.isEmpty) {
+              throw Exception("Email and Password cannot be empty");
+            }
             String response = await AuthService().signInWithEmailPassword(email:email, password:password);
             if(response == 'Success') {
               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => BottomNav()), (_) => false);
@@ -45,6 +52,14 @@ class LoginButton extends StatelessWidget {
                         Overlay.of(context),
                         CustomSnackBar.error(
                           message: response,
+                        ),
+                      );
+            }
+            } catch(e) {
+              showTopSnackBar(
+                        Overlay.of(context),
+                        CustomSnackBar.error(
+                          message: e.toString(),
                         ),
                       );
             }
