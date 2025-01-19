@@ -27,7 +27,6 @@ void main() async {
           builder: (context, child) => MaterialApp(home: LoginPage())),
     );
 
-    // Verify all essential widgets are present
     expect(find.text('Email'), findsOneWidget);
     expect(find.text('Password'), findsOneWidget);
     expect(find.byType(LoginButton), findsOneWidget);
@@ -139,7 +138,6 @@ void main() async {
       MaterialApp(home: LoginPage()),
     );
 
-    // Tap the register button
     await tester.tap(find.text('Register'));
     await tester.pumpAndSettle();
     await tester.pump(const Duration(seconds: 2));
