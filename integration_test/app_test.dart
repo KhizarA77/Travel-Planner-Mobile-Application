@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:travelhive/firebase_options.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:travelhive/views/login_view/login_page.dart';
 import 'package:travelhive/views/register_view/register_page.dart';
 import 'package:travelhive/widgets/login_widgets/login_button.dart';

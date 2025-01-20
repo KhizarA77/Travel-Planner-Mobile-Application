@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:travelhive/views/change_password_view/change_password_page.dart';
+import 'package:travelhive/views/login_view/login_page.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
-import 'package:travelhive/main.dart';
+import 'package:travelhive/views/register_view/register_page.dart';
+import 'package:travelhive/views/verification_view/verification_page.dart';
+
+
 Future<void> testExecutable(FutureOr<void> Function() testMain) async {
   return GoldenToolkit.runWithConfiguration(
     () async {
@@ -19,31 +23,88 @@ Future<void> testExecutable(FutureOr<void> Function() testMain) async {
 }
 
 void main() {
-  setUpAll(()async{
-   await testExecutable((){});
+  // setupFirebaseAuthMocks();
+  setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await testExecutable(() {});
   });
-  testGoldens('UI Test', (WidgetTester tester) async {
-       var customWidget =  MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: MyApp(),
-      );
 
-      await tester.pumpWidgetBuilder(customWidget,
-          surfaceSize: const Size(800, 800));
-      await tester.pumpAndSettle(const Duration(seconds: 4));
+  testGoldens('Golden test for LoginPage', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      ScreenUtilInit(
+          designSize: const Size(375, 812),
+          builder: (context, child) {
+            return MaterialApp(
+              title: 'Travel Hive',
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                useMaterial3: true,
+              ),
+              home: LoginPage(),
+            );
+          }),
+    );
+    await tester.pumpAndSettle(const Duration(seconds: 8));
+    await screenMatchesGolden(tester, 'test_login_sc');
+  });
 
-      await screenMatchesGolden(tester, 'test_sc');
-    });
+  testGoldens('Golden test for Register Page', (WidgetTester tester) async {
+    // Inject dependencies if required
+    await tester.pumpWidget(
+      ScreenUtilInit(
+          designSize: const Size(375, 812),
+          builder: (context, child) {
+            return MaterialApp(
+              title: 'Travel Hive',
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                useMaterial3: true,
+              ),
+              home: RegisterPage(),
+            );
+          }),
+    );
+    await tester.pumpAndSettle(const Duration(seconds: 8));
+    await screenMatchesGolden(tester, 'test_register_sc');
+  });
 
-}
+  testGoldens('Golden test for Verification Page', (WidgetTester tester) async {
+    // Inject dependencies if required
+    await tester.pumpWidget(
+      ScreenUtilInit(
+          designSize: const Size(375, 812),
+          builder: (context, child) {
+            return MaterialApp(
+              title: 'Travel Hive',
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                useMaterial3: true,
+              ),
+              home: VerificationPage(),
+            );
+          }),
+    );
+    await tester.pumpAndSettle(const Duration(seconds: 8));
+    await screenMatchesGolden(tester, 'test_verification_sc');
+  });
 
-
-Future<void> preloadMaterialFonts() async {
-  final fontLoader = FontLoader('Roboto');
-  fontLoader.addFont(rootBundle.load('packages/flutter/assets/Roboto-Regular.ttf'));
-  fontLoader.addFont(rootBundle.load('packages/flutter/assets/Roboto-Medium.ttf'));
-  await fontLoader.load();
+  testGoldens('Golden test for Change Password Page',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      ScreenUtilInit(
+          designSize: const Size(375, 812),
+          builder: (context, child) {
+            return MaterialApp(
+              title: 'Travel Hive',
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                useMaterial3: true,
+              ),
+              home: ChangePasswordPage(),
+            );
+          }),
+    );
+    await tester.pumpAndSettle(const Duration(seconds: 8));
+    await screenMatchesGolden(tester, 'test_cpw_sc');
+  });
 }
